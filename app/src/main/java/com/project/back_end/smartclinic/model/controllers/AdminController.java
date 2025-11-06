@@ -1,5 +1,5 @@
 
-package com.project.back_end.controllers;
+package com.project.back_end.smartclinic.model.controllers;
 
 public class AdminController {
 

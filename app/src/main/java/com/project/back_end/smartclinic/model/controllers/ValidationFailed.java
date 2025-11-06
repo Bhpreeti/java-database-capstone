@@ -1,4 +1,4 @@
-package com.project.back_end.controllers;
+package com.project.back_end.smartclinic.model.controllers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

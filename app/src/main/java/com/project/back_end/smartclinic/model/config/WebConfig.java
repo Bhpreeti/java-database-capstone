@@ -1,4 +1,4 @@
-package com.project.back_end.config;
+package com.project.back_end.smartclinic.model.config;
 
 
 import org.springframework.context.annotation.Configuration;

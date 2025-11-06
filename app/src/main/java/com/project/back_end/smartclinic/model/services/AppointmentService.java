@@ -1,4 +1,4 @@
-package com.project.back_end.services;
+package com.project.back_end.smartclinic.model.services;
 
 public class AppointmentService {
 // 1. **Add @Service Annotation**:

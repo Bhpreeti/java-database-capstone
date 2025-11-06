@@ -1,4 +1,4 @@
-package com.project.back_end.mvc;
+package com.project.back_end.smartclinic.model.mvc;
 
 public class DashboardController {
 

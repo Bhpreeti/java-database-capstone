@@ -1,4 +1,4 @@
-package com.project.back_end.repo;
+package com.project.back_end.smartclinic.model.repo;
 
 public interface DoctorRepository {
    // 1. Extend JpaRepository:
