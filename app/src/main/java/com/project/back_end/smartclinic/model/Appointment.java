@@ -1,10 +1,14 @@
 package com.project.back_end.smartclinic.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
+@Table(name = "appointments")
 public class Appointment {
 
     @Id
@@ -12,21 +16,34 @@ public class Appointment {
     private Long id;
 
     @ManyToOne
-    @NotNull
+    @NotNull(message = "Doctor cannot be null")
     private Doctor doctor;
 
     @ManyToOne
-    @NotNull
+    @NotNull(message = "Patient cannot be null")
     private Patient patient;
 
-    @NotNull
+    @NotNull(message = "Appointment time cannot be null")
+    @Future(message = "Appointment time must be in the future")
     private LocalDateTime appointmentTime;
 
-    private String status;
+    @NotNull(message = "Status cannot be null")
+    private int status; // 0 = Scheduled, 1 = Completed
 
-    // Helper method
+    // Helper method - not stored in database
+    @Transient
     public LocalDateTime getEndTime() {
         return appointmentTime.plusHours(1);
+    }
+
+    @Transient
+    public LocalDate getAppointmentDate() {
+        return appointmentTime.toLocalDate();
+    }
+
+    @Transient
+    public LocalTime getAppointmentTimeOnly() {
+        return appointmentTime.toLocalTime();
     }
 
     // Getters and Setters
@@ -42,6 +59,6 @@ public class Appointment {
     public LocalDateTime getAppointmentTime() { return appointmentTime; }
     public void setAppointmentTime(LocalDateTime appointmentTime) { this.appointmentTime = appointmentTime; }
 
-    public String getStatus() { return status; }
-    public void setStatus(String status) { this.status = status; }
+    public int getStatus() { return status; }
+    public void setStatus(int status) { this.status = status; }
 }
