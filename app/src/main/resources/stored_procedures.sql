@@ -61,3 +61,31 @@ DELIMITER ;
 
 -- Sample call (for testing)
 -- CALL GetDoctorWithMostPatientsByMonth(4, 2025);
+
+-- -------------------------------
+-- 3. Doctor with Most Patients By Year
+-- -------------------------------
+DELIMITER $$
+CREATE PROCEDURE GetDoctorWithMostPatientsByYear(
+    IN input_year INT
+)
+BEGIN
+    SELECT
+        d.name AS doctor_name,
+        COUNT(a.patient_id) AS patients_seen
+    FROM
+        appointment a
+    JOIN
+        doctor d ON a.doctor_id = d.id
+    WHERE
+        YEAR(a.appointment_time) = input_year
+    GROUP BY
+        d.id
+    ORDER BY
+        patients_seen DESC
+    LIMIT 1;
+END$$
+DELIMITER ;
+
+-- Sample call (for testing)
+-- CALL GetDoctorWithMostPatientsByYear(2025);
